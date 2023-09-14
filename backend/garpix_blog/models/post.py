@@ -20,6 +20,7 @@ class PostPage(BasePage, PostMixin, PolymorphicActiveMixin):
     blog = models.ForeignKey(BlogPage, verbose_name='Проект', on_delete=models.CASCADE, related_name='posts')
     author = models.ForeignKey('user.User', verbose_name='Пользователь', on_delete=models.SET_NULL, blank=True,
                                null=True, related_name='posts')
+    category = models.ForeignKey(CategoryPost, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return f'{self.title}'
