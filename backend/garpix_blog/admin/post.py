@@ -12,3 +12,6 @@ class PostPageAdmin(BasePageAdmin):
         PostVideoItemInline
     ]
     readonly_fields = ('created_at', 'updated_at',)
+
+    def has_module_permission(self, request):
+        return True

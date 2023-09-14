@@ -15,7 +15,8 @@ class BlogPageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BlogPage
-        fields = '__all__'
+        fields = ["id", "url", "title", "is_active", "created_at", "updated_at", "image", "sites",
+                  "category", "posts"]
 
 
 class BlogPageListSerializer(serializers.ModelSerializer):
@@ -27,4 +28,4 @@ class BlogPageListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BlogPage
-        fields = ['title', 'url']
+        fields = ["id", "url", "title", "is_active", "created_at", "updated_at", "image", "sites"]

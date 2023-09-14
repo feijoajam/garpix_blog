@@ -5,4 +5,6 @@ from garpix_page.admin import BasePageAdmin
 
 @admin.register(BlogPage)
 class BlogPageAdmin(BasePageAdmin):
-    pass
+
+    def has_module_permission(self, request):
+        return True

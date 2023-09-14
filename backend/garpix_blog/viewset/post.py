@@ -7,6 +7,8 @@ from garpix_blog.models import PostPage
 from garpix_blog.serializers import PostPageSerializer, PostPageListSerializer
 from rest_framework.permissions import BasePermission
 
+from garpix_blog.serializers.post import CreatePostPageSerializer
+
 
 class PostPagePagination(PageNumberPagination):
 
@@ -21,7 +23,7 @@ class PostPageFilter(django_filters.FilterSet):
 
     class Meta:
         model = PostPage
-        fields = ['created_at', 'type']
+        fields = ['created_at']
 
 
 class PostPageViewSet(ModelViewSet):
@@ -35,4 +37,10 @@ class PostPageViewSet(ModelViewSet):
     def get_serializer_class(self):
         if self.action == 'list':
             return PostPageListSerializer
+        if self.action == 'create':
+            return CreatePostPageSerializer
         return PostPageSerializer
+
+    def perform_create(self, serializer):
+        serializer.validated_data['author'] = self.request.user
+        serializer.save()

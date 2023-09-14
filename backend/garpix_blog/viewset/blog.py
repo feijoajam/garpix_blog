@@ -21,7 +21,7 @@ class BlogPageFilter(django_filters.FilterSet):
 
     class Meta:
         model = BlogPage
-        fields = ['created_at', 'type', 'category']
+        fields = ['created_at']
 
 
 class BlogPageViewSet(ModelViewSet):

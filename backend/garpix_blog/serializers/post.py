@@ -22,8 +22,8 @@ class PostPageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostPage
         fields = [
-            'id', 'blog', 'short_description',
-            'content', 'image_preview', 'images', 'videos',
+            'id', 'blog', 'short_description', 'url',
+            'content', 'images', 'videos',
         ]
 
 
@@ -38,5 +38,16 @@ class PostPageListSerializer(serializers.ModelSerializer):
         model = PostPage
         fields = [
             'id', 'blog', 'short_description',
-            'content', 'image_preview', 'url',
+            'content', 'url',
+        ]
+
+
+class CreatePostPageSerializer(serializers.ModelSerializer):
+    videos = PostPageVideoSerializer(read_only=True, many=True)
+    images = PostPageImagesSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = PostPage
+        fields = [
+            'id', 'blog', 'short_description', 'content', 'image', 'category', 'videos', 'images'
         ]
