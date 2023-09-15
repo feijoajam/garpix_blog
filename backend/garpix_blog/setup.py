@@ -33,4 +33,3 @@ setup(
         'garpixcms >= 1.9.0',
     ],
 )
-
