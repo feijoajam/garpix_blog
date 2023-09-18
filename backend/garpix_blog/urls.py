@@ -1,7 +1,11 @@
-from rest_framework.routers import DefaultRouter
+from django.conf import settings
+from django.urls import path, include
 
-from garpix_blog import viewset
+from .routers import router
 
-router = DefaultRouter()
-router.register('blog', viewset.BlogPageViewSet)
-router.register('post', viewset.PostPageViewSet)
+app_name = 'garpix_blog'
+
+
+urlpatterns = [
+    path(f'{settings.API_URL}/', include(router.urls))
+]
